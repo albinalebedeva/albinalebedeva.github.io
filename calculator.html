@@ -33,10 +33,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #display {
-            width: 100%;
+            width: calc(100% - 40px); /* чтобы учесть padding родительского элемента */
             padding: 15px;
             font-size: 24px;
             border: 1px solid #ccc;
@@ -48,6 +51,12 @@
             background-color: #ffcccc;
         }
 
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
         button {
             font-size: 18px;
             padding: 15px;
@@ -56,6 +65,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 60px; /* фиксированная ширина кнопок */
         }
 
         button:hover {
@@ -99,26 +109,30 @@
     <p></p>
     <div id="calculator">
         <input type="text" id="display" disabled>
-        <br>
-        <button class="number" onclick="addToDisplay('7')">7</button>
-        <button class="number" onclick="addToDisplay('8')">8</button>
-        <button class="number" onclick="addToDisplay('9')">9</button>
-        <button class="operator" onclick="addToDisplay('+')">+</button>
-        <br>
-        <button class="number" onclick="addToDisplay('4')">4</button>
-        <button class="number" onclick="addToDisplay('5')">5</button>
-        <button class="number" onclick="addToDisplay('6')">6</button>
-        <button class="operator" onclick="addToDisplay('-')">-</button>
-        <br>
-        <button class="number" onclick="addToDisplay('1')">1</button>
-        <button class="number" onclick="addToDisplay('2')">2</button>
-        <button class="number" onclick="addToDisplay('3')">3</button>
-        <button class="operator" onclick="addToDisplay('*')">*</button>
-        <br>
-        <button class="number" onclick="addToDisplay('0')">0</button>
-        <button class="control" onclick="clearDisplay()">C</button>
-        <button class="control" onclick="calculateResult()">=</button>
-        <button class="operator" onclick="addToDisplay('/')">/</button>
+        <div class="button-row">
+            <button class="number" onclick="addToDisplay('7')">7</button>
+            <button class="number" onclick="addToDisplay('8')">8</button>
+            <button class="number" onclick="addToDisplay('9')">9</button>
+            <button class="operator" onclick="addToDisplay('+')">+</button>
+        </div>
+        <div class="button-row">
+            <button class="number" onclick="addToDisplay('4')">4</button>
+            <button class="number" onclick="addToDisplay('5')">5</button>
+            <button class="number" onclick="addToDisplay('6')">6</button>
+            <button class="operator" onclick="addToDisplay('-')">-</button>
+        </div>
+        <div class="button-row">
+            <button class="number" onclick="addToDisplay('1')">1</button>
+            <button class="number" onclick="addToDisplay('2')">2</button>
+            <button class="number" onclick="addToDisplay('3')">3</button>
+            <button class="operator" onclick="addToDisplay('*')">*</button>
+        </div>
+        <div class="button-row">
+            <button class="number" onclick="addToDisplay('0')">0</button>
+            <button class="control" onclick="clearDisplay()">C</button>
+            <button class="control" onclick="calculateResult()">=</button>
+            <button class="operator" onclick="addToDisplay('/')">/</button>
+        </div>
     </div>
     <button class="back-btn" onclick="window.location.href = 'index.html';">Назад</button>
     <script src="calculator.js"></script>
