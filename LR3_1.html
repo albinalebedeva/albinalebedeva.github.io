@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin-top: 50px;
+        }
+        little {
+            font-style: italic;
+            font-size: 1.2em;
+            color: #333;
+        }
+        h5 {
+            color: #0066cc;
+            font-size: 1.5em;
+        }
+        input[type="number"] {
+            width: 200px;
+            height: 30px;
+            font-size: 1em;
+            margin: 10px;
+        }
+        b {
+            font-size: 1em;
+            color: #555;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #otvet {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <little><i>Какое из чисел максимально?</i></little>
+    <h5>Найдем максимум двух чисел</h5>
+    <input type="number" id="n1">
+    <b>
+        <label for="n1">- первое число</label>
+    </b>
+    <br>
+    <input type="number" id="n2">
+    <b>
+        <label for="n2">- второе число</label>
+    </b>
+    <br><br>
+    <button onclick="findMax()">Вычислить</button>
+    <p id="otvet"></p>
+
+    <script>
+        function findMax() {
+            var n1 = parseFloat(document.getElementById('n1').value);
+            var n2 = parseFloat(document.getElementById('n2').value);
+
+            var maxN = Math.max(n1, n2);
+
+            document.getElementById('otvet').textContent = "Максимальное число: " + maxN;
+        }
+    </script>
+    
+    <br><br>
+    <button onclick="window.location.href = 'index.html';">Назад</button>
+</body>
+</html>

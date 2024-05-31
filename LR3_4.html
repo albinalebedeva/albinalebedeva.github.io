@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета кандидата</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .resume {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #bbb;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-group textarea {
+            height: 80px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 12px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .hidden-btn {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .hidden-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            background-color: #FF9800;
+            color: white;
+        }
+
+        .back-btn:hover {
+            background-color: #E68900;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .checkbox-group {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .checkbox-group label {
+            font-weight: bold;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <h1>Анкета кандидата</h1>
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Фамилия:</label>
+            <input type="text" id="surname">
+        </div>
+        <div class="form-group">
+            <label for="age">Возраст:</label>
+            <input type="number" id="age">
+        </div>
+        <div class="form-group">
+            <label for="gender">Пол (М/Ж):</label>
+            <input type="text" id="gender">
+        </div>
+        <div class="form-group checkbox-group">
+            <label>Имеется ли:</label>
+            <input type="checkbox" id="higher-education"> Высшее образование<br>
+            <input type="checkbox" id="smoker"> Знание программирования<br>
+            <input type="checkbox" id="criminal-record"> Знание G-кода<br>
+        </div>
+        <div class="form-group">
+            <label for="about">О себе:</label>
+            <textarea id="about"></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Заполнить анкету</button>
+        <button class="hidden hidden-btn" id="submit-final" onclick="finalSubmit()">Меня возьмут</button>
+        <button class="back-btn" onclick="window.location.href = 'index.html';">Назад</button>
+    </div>
+
+    <script>
+        function validateTextInput(input) {
+            return /^[a-zA-Zа-яА-Я]+$/.test(input);
+        }
+
+        function validateGenderInput(input) {
+            return /^(М|Ж)$/.test(input);
+        }
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const about = document.getElementById('about').value;
+
+            if (!validateTextInput(name)) {
+                alert('Имя должно содержать только буквы.');
+                return;
+            }
+
+            if (!validateTextInput(surname)) {
+                alert('Фамилия должна содержать только буквы.');
+                return;
+            }
+
+            if (age < 0 || !Number.isInteger(Number(age))) {
+                alert('Возраст должен быть неотрицательным целым числом.');
+                return;
+            }
+
+            if (!validateGenderInput(gender)) {
+                alert('Пол должен быть указан как М или Ж.');
+                return;
+            }
+
+            if (!about) {
+                alert('Пожалуйста, напишите пару строк о себе.');
+                return;
+            }
+
+            document.getElementById('submit-final').classList.remove('hidden');
+            document.querySelector('.submit-btn').classList.add('hidden');
+        }
+
+        function finalSubmit() {
+            const checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.disabled = true);
+            alert('Анкета заполнена. Спасибо!');
+        }
+    </script>
+</body>
+</html>
